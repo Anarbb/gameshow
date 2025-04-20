@@ -1,5 +1,6 @@
-import React from 'react'
-import { NavBar } from './NavBar'
+import React from 'react';
+import { GameMap } from '../components/GameMap';
+import { NavBar } from './NavBar';
 
 interface HomeProps {
   channelName?: string;
@@ -16,6 +17,8 @@ export const Home: React.FC<HomeProps> = ({ channelName, status, avatarUri, user
       <img src="/rocket.png" className="logo" alt="Discord" />
       
       {channelName ? <h3>#{channelName}</h3> : <h3>{status}</h3>}
+
+      <GameMap />
       <small>
         Powered by <strong>Robo.js</strong>
       </small>
