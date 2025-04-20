@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { GameMap } from '../components/GameMap';
 import { NavBar } from './NavBar';
 
