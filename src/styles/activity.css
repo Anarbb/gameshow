@@ -1,0 +1,189 @@
+.activity-container {
+	font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #dcddde;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+.activity-header {
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.logo {
+	height: 60px;
+}
+
+.activity-content {
+	background-color: #36393f;
+	border-radius: 8px;
+	padding: 1.5rem;
+}
+
+h2 {
+	color: #ffffff;
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 1.5rem;
+}
+
+.controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	background-color: #2f3136;
+	padding: 1rem;
+	border-radius: 8px;
+}
+
+.level-control {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	width: 60%;
+}
+
+.level-control label {
+	font-weight: bold;
+}
+
+.level-control input {
+	width: 100%;
+	accent-color: #7289da;
+}
+
+.regenerate-button {
+	background-color: #7289da;
+	color: white;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background-color 0.2s;
+}
+
+.regenerate-button:hover {
+	background-color: #5e77d4;
+}
+
+.game-map-container {
+	margin: 2rem 0;
+	display: flex;
+	justify-content: center;
+}
+
+.game-map-loading {
+	color: #dcddde;
+	text-align: center;
+	padding: 2rem;
+}
+
+.game-map-grid {
+	display: grid;
+	gap: 4px;
+	width: 100%;
+	aspect-ratio: 1;
+	max-width: 500px;
+}
+
+.game-map-tile {
+	position: relative;
+	aspect-ratio: 1;
+	background-color: #36393f;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1rem;
+	color: #dcddde;
+	user-select: none;
+}
+
+.tile-empty {
+	opacity: 0.2;
+}
+
+.tile-start {
+	background-color: #43b581;
+	font-weight: bold;
+}
+
+.tile-end {
+	background-color: #f04747;
+	font-weight: bold;
+}
+
+.tile-path {
+	background-color: #36393f; /* match background so it blends in */
+}
+
+.tile-combat {
+	background-color: #fdcb58;
+	color: #2f3136;
+}
+
+.tile-treasure {
+	background-color: #faa61a;
+	color: #2f3136;
+}
+
+.map-info {
+	background-color: #2f3136;
+	padding: 1rem;
+	border-radius: 8px;
+	margin-top: 1rem;
+}
+
+.map-info h3 {
+	margin-top: 0;
+	color: #ffffff;
+}
+
+.map-info p {
+	margin: 0.5rem 0;
+}
+
+
+.game-map-tile.connected-north::before,
+.game-map-tile.connected-south::after,
+.game-map-tile.connected-east::before,
+.game-map-tile.connected-west::after {
+	content: "";
+	position: absolute;
+	background-color: #7289da;
+	z-index: 1;
+}
+
+.game-map-tile.connected-north::before {
+	width: 30%;
+	height: 50%;
+	top: -50%;
+	left: 35%;
+}
+
+.game-map-tile.connected-south::after {
+	width: 30%;
+	height: 50%;
+	bottom: -50%;
+	left: 35%;
+}
+
+.game-map-tile.connected-east::before {
+	width: 50%;
+	height: 30%;
+	right: -50%;
+	top: 35%;
+}
+
+.game-map-tile.connected-west::after {
+	width: 50%;
+	height: 30%;
+	left: -50%;
+	top: 35%;
+}
+.tile-path {
+	background-color: #4f545c;
+}

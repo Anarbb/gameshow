@@ -1,0 +1,112 @@
+.game-map-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    background-color: #2f3136;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .game-map-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: #dcddde;
+  }
+  
+  .game-map-level {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .game-map-grid {
+    display: grid;
+    gap: 4px;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .game-map-tile {
+    position: relative;
+    aspect-ratio: 1;
+    background-color: #36393f;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #dcddde;
+    user-select: none;
+  }
+  
+  .tile-empty {
+    opacity: 0.2;
+  }
+  
+  .tile-start {
+    background-color: #43b581;
+    font-weight: bold;
+  }
+  
+  .tile-end {
+    background-color: #f04747;
+    font-weight: bold;
+  }
+  
+  .tile-path {
+    background-color: #4f545c;
+  }
+  
+  .tile-combat {
+    background-color: #fdcb58;
+    color: #2f3136;
+  }
+  
+  .tile-treasure {
+    background-color: #faa61a;
+    color: #2f3136;
+  }
+  
+  /* Connection styles */
+  .game-map-tile.connected-north::before,
+  .game-map-tile.connected-south::after,
+  .game-map-tile.connected-east::before,
+  .game-map-tile.connected-west::after {
+    content: "";
+    position: absolute;
+    background-color: #7289da;
+    z-index: 1;
+  }
+  
+  .game-map-tile.connected-north::before {
+    width: 30%;
+    height: 50%;
+    top: -50%;
+    left: 35%;
+  }
+  
+  .game-map-tile.connected-south::after {
+    width: 30%;
+    height: 50%;
+    bottom: -50%;
+    left: 35%;
+  }
+  
+  .game-map-tile.connected-east::before {
+    width: 50%;
+    height: 30%;
+    right: -50%;
+    top: 35%;
+  }
+  
+  .game-map-tile.connected-west::after {
+    width: 50%;
+    height: 30%;
+    left: -50%;
+    top: 35%;
+  }
+
+  
