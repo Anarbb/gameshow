@@ -1,40 +1,29 @@
 import { useEffect, useState } from 'react'
 import { useDiscordSdk } from '../hooks/useDiscordSdk'
+import { Home } from './Home'
 
-/**
- * This is your Discord Activity's main component. Customize it as you like!
- *
- * Learn more:
- * https://robojs.dev/discord-activities
- */
+
 export const Activity = () => {
-	const { authenticated, discordSdk, status } = useDiscordSdk()
-	const [channelName, setChannelName] = useState<string>()
+    const { authenticated, discordSdk, status, session } = useDiscordSdk()
+    const [channelName, setChannelName] = useState<string>()
 
-	useEffect(() => {
-		// Requesting the channel in GDMs (when the guild ID is null) requires
-		// the dm_channels.read scope which requires Discord approval.
-		if (!authenticated || !discordSdk.channelId || !discordSdk.guildId) {
-			return
-		}
+	// generate avatarUri from session
+	// if session is not available, use a placeholder
+    const avatarUri = session?.user ? `https://cdn.discordapp.com/avatars/${session.user.id}/${session.user.avatar}.png?size=256` : undefined
+	// generate username from session
+	// if session is not available, use a Sage
+	const username = session?.user.username ? session.user.username : 'Sage' // Fallback to 'User' if username is not available
+    useEffect(() => {
+        if (!authenticated || !discordSdk.channelId || !discordSdk.guildId) {
+            return
+        }
 
-		// Collect channel info over RPC
-		// Enable authentication to see it! (App.tsx)
-		discordSdk.commands.getChannel({ channel_id: discordSdk.channelId }).then((channel) => {
-			if (channel.name) {
-				setChannelName(channel.name)
-			}
-		})
-	}, [authenticated, discordSdk])
+        discordSdk.commands.getChannel({ channel_id: discordSdk.channelId }).then((channel) => {
+            if (channel.name) {
+                setChannelName(channel.name)
+            }
+        })
+    }, [authenticated, discordSdk])
 
-	return (
-		<div>
-			<img src="/rocket.png" className="logo" alt="Discord" />
-			<h1>Hello, World</h1>
-			{channelName ? <h3>#{channelName}</h3> : <h3>{status}</h3>}
-			<small>
-				Powered by <strong>Robo.js</strong>
-			</small>
-		</div>
-	)
+    return <Home channelName={channelName} status={status} avatarUri={avatarUri} username={username} />
 }

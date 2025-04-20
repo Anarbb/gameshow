@@ -2,22 +2,16 @@ import { DiscordContextProvider } from '../hooks/useDiscordSdk'
 import { Activity } from './Activity'
 import './App.css'
 
-/**
- * Set `authenticate` to true to enable Discord authentication.
- * You can also set the `scope` prop to request additional permissions.
- *
- * ```
- * <DiscordContextProvider authenticate scope={['identify', 'guilds']}>
- *  <Activity />
- * </DiscordContextProvider>
- * ```
- *
- * Learn more:
- * https://robojs.dev/discord-activities/authentication
- */
+
 export default function App() {
+
+	// i added scope to the DiscordContextProvider
+	// to request the guilds scope, which is needed to get the channel name
+	// this is needed to get the channel name
+	// and the user avatar
+
 	return (
-		<DiscordContextProvider>
+		<DiscordContextProvider authenticate scope={['identify', 'guilds']}>
 			<Activity />
 		</DiscordContextProvider>
 	)
