@@ -2,28 +2,38 @@ import { useEffect, useState } from 'react'
 import { useDiscordSdk } from '../hooks/useDiscordSdk'
 import { Home } from './Home'
 
-
 export const Activity = () => {
-    const { authenticated, discordSdk, status, session } = useDiscordSdk()
-    const [channelName, setChannelName] = useState<string>()
+	const { authenticated, discordSdk, status, session } = useDiscordSdk()
+	const [channelName, setChannelName] = useState<string>()
 
-	// generate avatarUri from session
-	// if session is not available, use a placeholder
-    const avatarUri = session?.user ? `https://cdn.discordapp.com/avatars/${session.user.id}/${session.user.avatar}.png?size=256` : undefined
-	// generate username from session
-	// if session is not available, use a Sage
+	// if (!authenticated) {
+	// 	return <div>Loading...</div>
+	// }
+	const avatarUri = session?.user
+		? `https://cdn.discordapp.com/avatars/${session.user.id}/${session.user.avatar}.png?size=256`
+		: undefined
+
 	const username = session?.user.username ? session.user.username : 'Sage' // Fallback to 'User' if username is not available
-    useEffect(() => {
-        if (!authenticated || !discordSdk.channelId || !discordSdk.guildId) {
-            return
-        }
+	const displayName = session?.user.global_name ? session.user.global_name : 'Brimstone' // The user display name is the global name if available, otherwise the username
+	useEffect(() => {
+		if (!authenticated || !discordSdk.channelId || !discordSdk.guildId) {
+			return
+		}
 
-        discordSdk.commands.getChannel({ channel_id: discordSdk.channelId }).then((channel) => {
-            if (channel.name) {
-                setChannelName(channel.name)
-            }
-        })
-    }, [authenticated, discordSdk])
+		discordSdk.commands.getChannel({ channel_id: discordSdk.channelId }).then((channel) => {
+			if (channel.name) {
+				setChannelName(channel.name)
+			}
+		})
+	}, [authenticated, discordSdk])
 
-    return <Home channelName={channelName} status={status} avatarUri={avatarUri} username={username} />
+	return (
+		<Home
+			channelName={channelName}
+			status={status}
+			avatarUri={avatarUri}
+			username={username}
+			displayName={displayName}
+		/>
+	)
 }
