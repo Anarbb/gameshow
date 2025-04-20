@@ -34,6 +34,7 @@
 		"@discord/embedded-app-sdk": "^2.0.0",
 		"@robojs/patch": "^0.2.1",
 		"@robojs/server": "^0.6.4",
+		"framer-motion": "^12.7.4",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"robo.js": "^0.10.30"
